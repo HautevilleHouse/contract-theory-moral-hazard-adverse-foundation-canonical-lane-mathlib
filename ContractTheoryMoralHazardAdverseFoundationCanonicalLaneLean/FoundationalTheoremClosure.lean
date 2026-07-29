@@ -1,0 +1,18 @@
+import canonicalLaneMathlib.AdmissibleClass
+import ContractTheoryMoralHazardAdverseFoundationCanonicalLaneLean.MoralHazardModel
+import ContractTheoryMoralHazardAdverseFoundationCanonicalLaneLean.AdverseSelectionModel
+import ContractTheoryMoralHazardAdverseFoundationCanonicalLaneLean.ContractMechanismDesign
+import ContractTheoryMoralHazardAdverseFoundationCanonicalLaneLean.IncentiveCompatibilityCore
+
+namespace HautevilleHouse
+namespace ContractTheoryMoralHazardAdverseFoundationCanonicalLaneLean
+
+def ContractTheoryClosure (A : AdmissibleClass) : Prop :=
+  bridgeClosed A ∧ gateClosed A
+
+theorem contract_theory_endgame (A : AdmissibleClass) :
+    ContractTheoryClosure A :=
+  And.intro (bridge_from_admissible_class A) (gate_from_admissible_class A)
+
+end ContractTheoryMoralHazardAdverseFoundationCanonicalLaneLean
+end HautevilleHouse

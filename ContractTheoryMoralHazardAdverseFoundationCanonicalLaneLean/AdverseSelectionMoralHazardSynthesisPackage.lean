@@ -1,0 +1,31 @@
+import canonicalLaneMathlib.AdmissibleClass
+import HautevilleHouse.ContractTheoryMoralHazardAdverseFoundationCanonicalLaneLean.ContractAdverseSelectionPackage
+import HautevilleHouse.ContractTheoryMoralHazardAdverseFoundationCanonicalLaneLean.MoralHazardHiddenActionPackage
+import HautevilleHouse.ContractTheoryMoralHazardAdverseFoundationCanonicalLaneLean.PrincipalAgentOptimalContractPackage
+import HautevilleHouse.ContractTheoryMoralHazardAdverseFoundationCanonicalLaneLean.ImplementabilityRevelationPackage
+
+namespace HautevilleHouse
+namespace ContractTheoryMoralHazardAdverseFoundationCanonicalLaneLean
+
+structure AdverseSelectionMoralHazardSynthesisPackage where
+  principalAgentOptimalContract : PrincipalAgentOptimalContractPackage ContractAdverseSelectionPackage.MoralHazardHiddenActionPackage
+  implementabilityRevelation : ImplementabilityRevelationPackage
+  combinedOptimalityConditions : Prop
+  welfareComparisonFirstBestSecondBest : Prop
+  regulatoryImplication : Prop
+
+structure AdverseSelectionMoralHazardSynthesisEvidence (S : AdverseSelectionMoralHazardSynthesisPackage) where
+  combinedOptimalityConditionsClosed : S.combinedOptimalityConditions
+  welfareComparisonFirstBestSecondBestClosed : S.welfareComparisonFirstBestSecondBest
+  regulatoryImplicationClosed : S.regulatoryImplication
+
+def AdverseSelectionMoralHazardSynthesisClosed (S : AdverseSelectionMoralHazardSynthesisPackage) : Prop :=
+  S.combinedOptimalityConditions ∧ S.welfareComparisonFirstBestSecondBest ∧ S.regulatoryImplication
+
+theorem adverse_selection_moral_hazard_synthesis_closed_from_evidence
+    (S : AdverseSelectionMoralHazardSynthesisPackage) (E : AdverseSelectionMoralHazardSynthesisEvidence S) :
+    AdverseSelectionMoralHazardSynthesisClosed S := by
+  exact And.intro E.combinedOptimalityConditionsClosed
+    (And.intro E.welfareComparisonFirstBestSecondBestClosed E.regulatoryImplicationClosed)
+
+end HautevilleHouse.ContractTheoryMoralHazardAdverseFoundationCanonicalLaneLean
